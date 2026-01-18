@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>miniweb3D</title>
+    <meta name="description" content="miniweb wi">
+    <meta name="keywords" content="3D">
+    <meta name="author" content="wi angel">
+    
+    <!-- Seguridad y compatibilidad -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Preconexiones para mejorar rendimiento -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://media4.giphy.com">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <!-- TU: Ruta CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preload para imagenes criticas -->
+    <link rel="preload" href="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbThrdDExOG1nbjdqNGlrN2NxbTQzZmk5cWR2cmZjbzR6c3J0MzhpeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/khSDsWyslxdUSdp4LH/giphy.gif" as="image">
+</head>
+<body>
+    <!-- Fondo estilo widgets -->
+    <div class="background-effects" aria-hidden="true"></div>
+    
+    <!-- Modal para imagenes -->
+    <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <button class="close-modal" id="closeModal" aria-label="Cerrar vista previa">&times;</button>
+        <div class="modal-content">
+            <h2 id="modalTitle" class="sr-only">Imagen ampliada</h2>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <!-- Grid de widgets estilo personalizado Xiaomi/Windows 8 -->
+    <div class="widgets-container">
+        <!-- Widget 1: Perfil principal grande -->
+        <div class="profile-widget widget">
+            <div class="profile-image-container">
+                <!-- local: Imagen local desde img/ -->
+                <img src="img/perfil win.png" 
+                     alt="Perfil de WI_ANGEL - Animacion 3D" 
+                     class="profile-image"
+                     loading="lazy"
+                     width="270" height="270"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect width=%22400%22 height=%22400%22 fill=%22%231a1a2e%22/><text x=%22200%22 y=%22200%22 font-family=%22Arial%22 font-size=%2230%22 fill=%22%23ffffff%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>se a estido la foto</text></svg>'">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-title">WI_ANGEL</h1>
+                <span class="profile-tag">sandia prodicciones presenta</span>
+                <p style="margin-top: 1px; color: rgba(255, 255, 255, 0.8); line-height: 1.5;">
+                   Holas jsjs soy wi y me concidero un artista autodidacta. Mi proceso es construir 3D Low-poly dándoles vida . esperero superar mis propias expectativas
+                </p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="age">🇧🇴</span>
+                        <span class="stat-label">[ESP]</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="experience">📦</span>
+                        <span class="stat-label">BLENDER</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="projects">🧩</span>
+                        <span class="stat-label">KRITA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="rating">🌐</span>
+                        <span class="stat-label">V.01</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Widget 2: Galeria de mis dibujos -->
+        <div class="gallery-widget widget">
+            <h2 class="widget-title">
+                <i class="fas fa-palette" aria-hidden="true"></i> FANART
+            </h2>
+            <div class="mosaic-gallery" id="gallery">
+                <!-- Imagenes cargadas dinamicamente -->
+            </div>
+        </div>
+        
+        <!-- Widget 3: Musica + Redes combinados -->
+        <div class="combined-widget widget">
+            <!-- favoritos de spotify -->
+            <div class="music-section">
+                <div class="music-header">
+                    <i class="fab fa-spotify music-icon" aria-hidden="true"></i>
+                    <h3 class="music-title">FAVORITO</h3>
+                </div>
+                <iframe style="border-radius:10px"
+                    src="https://open.spotify.com/embed/track/0O0P5sCu9jiptrulY4Og1g?utm_source=generator&theme=0"
+                    width="100%" height="80" frameborder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy" title="Reproductor de Spotify - Cancion 1">
+                </iframe>
+                <iframe style="border-radius:10px"
+                    src="https://open.spotify.com/embed/track/7H6ExpY3qhU7k022nUH66Z?utm_source=generator&theme=0"
+                    width="100%" height="80" frameborder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy" title="Reproductor de Spotify - Cancion 2">
+                </iframe>
+                <iframe style="border-radius:10px"
+                    src="https://open.spotify.com/embed/track/3OP8UeYimRl9HCNxMg7Ihl?utm_source=generator&theme=0"
+                    width="100%" height="80" frameborder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy" title="Reproductor de Spotify - Cancion 3">
+                </iframe>
+                <iframe style="border-radius:10px"
+                    src="https://open.spotify.com/embed/track/1nzuxI1V5mXGylN4Kvcoy6?utm_source=generator&theme=0"
+                    width="100%" height="80" frameborder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy" title="Reproductor de Spotify - Cancion 4">
+                </iframe>
+            </div>
+            
+ <!-- SECCION REDES SOCIALES WIWI WI -->
+            <div class="social-section">
+     <!-- TICK TOCK -->
+                <a href="asets/mantenimiento.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget tiktok" 
+                   aria-label="Visita mi TikTok - @wiangel13d">
+     <!-- LOGO PNG TICK TOCK -->
+                    <img src="img/ticktock.png"
+                        alt="logo ticktock personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">TikTok</span>
+                </a>
+    <!-- CARA -->
+                <a href="https://cara.app/wiangel" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget cara" 
+                   aria-label="Visita mi cara - @wiangel13d">
+     <!-- LOGO PNG CARA -->
+                    <img src="img/cara.png"
+                        alt="logo cara personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">cara</span>
+                </a>
+                
+    <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/wiangel3d/" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget instagram" 
+                   aria-label="Visita mi Instagram">
+    <!-- LOGO PNG INSTAGRAM -->
+                    <img src="img/instagram.png"
+                        alt="logo instagram personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">Instagram</span>
+                </a>
+                
+    <!-- DISCORD -->
+                <a href="asets/mantenimiento.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget discord" 
+                   aria-label="Únete a mi Discord">
+     <!-- LOGO PNG DISCORD -->
+                    <img src="img/discord.png"
+                        alt="logo discord personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">Discord</span>
+                </a>
+                
+    <!-- TWITTER -->
+                <a href="https://x.com/angel4_wi" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget twitter" 
+                   aria-label="Visita mi Twitter">
+     <!-- LOGO PNG TWITTER -->
+                    <img src="img/twitter.png"
+                        alt="logo twitter personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">Twitter</span>
+                </a>
+                
+    <!-- YOUTUBE -->
+                <a href="https://m.youtube.com/channel/UCYymDNWDkoXmgIlK5peyYtg" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget youtube" 
+                   aria-label="Visita mi YouTube">
+     <!-- LOGO PNG YOUTUBE -->
+                    <img src="img/youtube.png"
+                        alt="logo youtube personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">YouTube</span>
+                </a>
+                
+     <!-- FACEBOOK -->
+                <a href="asets/mantenimiento.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer nofollow"
+                   class="social-widget facebook" 
+                   aria-label="Visita mi Facebook">
+     <!-- LOGO PNG FACEBOOK -->
+                    <img src="img/facebook.png"
+                        alt="logo facebook personalizado"
+                        class="social-logo-custom"
+                        width="40"
+                        height="40"
+                    <span class="social-label">Facebook</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Widget 4: InformaciOn adicional y fecha actual -->
+        <div class="widget info-widget">
+            <h2 class="widget-title">
+                <i class="fas fa-terminal" aria-hidden="true"></i> SYSTEM INFO
+            </h2>
+            <div class="info-content">
+                <div class="info-item">
+                    <span class="info-label">HORARIO</span>
+                    <span class="info-value">LU-SAB</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">FECHA ACTUAL</span>
+                    <span class="info-value" id="current-date">LOADING...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">CONSULTAS</span>
+                    <span class="info-value">AL PRIVADO</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">ESTA WEB NO PIDE</span>
+                    <span class="info-value">CUENTA GMAIL NI REGISTRO</span>
+                </div>
+                <!-- iamgen al final -->
+                <div class="info-images">
+                    <!-- Aqui: imagen de zing -->
+                    
+                    <img src="img/mundo.png" 
+                         alt="Animacion pixel art 2" 
+                         width="340" height="340"
+                         style="opacity: 0.8; border-radius: 10px;"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- derechos reservados -->
+    <div class="footer">
+	    <p>credito a nombres ficticios: gracias @ choclito.es   win win   a la distacian.es</p>
+        <p>© <span id="footer-year">2026</span> MADE IN BOLIVIA | ORIGINALITI</p>
+		<p>--------------------------------------------------------------</p>
+        <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.6;">
+            <noscript>JavaScript esta deshabilitado. Algunas funciones pueden no estar disponibles.</noscript>
+        </p>
+    </div>
+
+    <!-- para: Ruta de JavaScript -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>
